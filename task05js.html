@@ -2,17 +2,18 @@
 
 <head>
 	<meta charset="utf-8">
-	<title>task04 基础js训练</title>
+	<title>task05 基础js训练</title>
 	<style type="text/css">
 		body{
 			text-align: center;
 			margin:10 auto;}
 
 		span{
+			vertical-align: bottom;
 			display: inline-block;
 			background: lightgrey;
 			color: white;
-			text-align: center;
+			text-align: left;
 			line-height: 30px;
 			height: 30px;
 			/*width: 30px;*/
@@ -31,17 +32,19 @@
 	&nbsp &nbsp &nbsp
 	<button id="butt3">左侧出</button>
 	<button id="butt4">右侧出</button>
+	<button id="paixu">排序</button>
 	<br/>
 	<div id="duilie">
 
 	</div>
 
-</body>
+
 
 <script type="text/javascript">
 //定义一个id选择器
 
 window.onload = function(){
+
 
 
 	function $(id){
@@ -61,6 +64,9 @@ window.onload = function(){
 			{alert("输入数字不合法!");
 			return 0;
 		}
+		else if(s<10||s>100)
+			{alert("请输入10-100之间的数");		
+			return 0}
 		else return 1;
 
 	}
@@ -69,16 +75,20 @@ window.onload = function(){
 		var temp = $("input_1").value;
 		if(validate(temp)){
 		   var rank = $("duilie").children.length;
+		   //span.setAttribute("id","span_"+rank);
 		   if(rank == 0){
 			span = addspan(temp);
-			//span.setAttribute("id","span_"+rank);
+			span.style.height = 30 + (temp-10)*5;
 			$("duilie").appendChild(span);
 		   }
-		   else{
+		   else if(rank > 59)
+		   	{alert("队列元素超过最大值");}
+		   else
+		   {
 			//先找到第一个子元素
 			var firstspan = $("duilie").firstChild;
 			span = addspan(temp);
-			//span.setAttribute("id","span_"+rank);
+			span.style.height = 30 + (temp-10)*5;
 			$("duilie").insertBefore(span,firstspan);
 
 		}
@@ -88,10 +98,15 @@ window.onload = function(){
 	$("butt2").onclick = function(){
 		var temp = $("input_1").value;
 		if(validate(temp)){
+
 		 var rank = $("duilie").children.length;
+		 if(rank > 59)
+		 	{alert("队列元素超过最大值");}
+		 else{
 		 span = addspan(temp);
-		 //span.setAttribute("id","span_"+rank);
+		 span.style.height = 30 + (temp-10)*5;
 		 $("duilie").appendChild(span);
+		  }
 		}
 
 	}
@@ -117,8 +132,65 @@ window.onload = function(){
 		{$("duilie").removeChild(event.srcElement);}
 
 	}
-};
+
+
+
+	//定义一个选择器,选中某一个span中,方便比较
+	function easy_span(i){
+		return document.getElementById("duilie").children.item(i);
+	}
+//waiting
+function sleep(numberMillis) { 
+   var now = new Date();
+   var exitTime = now.getTime() + numberMillis;  
+   while (true) { 
+       now = new Date(); 
+       if (now.getTime() > exitTime)    return;
+    }
+}
+
+
+
+//排序
+	$("paixu").onclick = function(){
+	var i=0,j,
+	len = $("duilie").children.length;
+
+	
+	var timer =	setInterval(function(){
+								for(j=i;j<len;j++)
+								{
+									if(easy_span(i).innerHTML > easy_span(j).innerHTML )
+										{
+											
+											if(j!=len-1){
+											$("duilie").insertBefore(easy_span(j),easy_span(i));
+											var ii=i+1,jj=j+1;
+											$("duilie").insertBefore(easy_span(ii),easy_span(jj));
+											}
+											else
+											{
+											var ii=i+1;
+											$("duilie").insertBefore(easy_span(j),easy_span(i));
+											var tempspann = easy_span(ii).cloneNode(true);
+											$("duilie").appendChild(tempspann);
+											$("duilie").removeChild(easy_span(ii));
+											}
+											
+
+
+										}
+								}
+								i++;
+								if(i==len)
+									clearInterval(timer);
+							},1000)
+	
+										}
+}
 
 </script>
+
+</body>
 
 </html>
