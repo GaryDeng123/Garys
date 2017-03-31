@@ -1,0 +1,285 @@
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>task04 基础js训练</title>
+	<style type="text/css">
+		body
+		{
+			/*align: center;*/
+			margin:10 auto;
+		}
+
+		span
+		{
+			display: inline-block;
+			background: black;
+			color: white;
+			text-align: center;
+			line-height: 30px;
+			height: 30px;
+			/*width: 30px;*/
+			margin:10px;
+			padding: 10px;
+		}
+
+		button
+		{
+			background: black;
+			border-radius: 5px;
+			border: none;
+			color: white;
+			height: 30px;
+			width: 150px;
+			font-size: 15px;
+		}
+
+		label
+		{
+			width: 45%;
+			float:left;
+			text-align:right;
+	   		padding-right:15px;
+		}
+	</style>
+</head>
+
+<body>
+	<div>
+		<label>
+			<button id="butt1">左侧入</button>
+			<button id="butt2">右侧入</button>
+			<br/>
+			<br/>
+			<button id="butt3">左侧出</button>
+			<button id="butt4">右侧出</button>
+		</label>
+
+			<textarea id="input_1" rows="2" cols="30" style = "height:80px"></textarea>
+	</div>
+		<br/>
+		<br/>
+	<div>		
+		<label>	
+		<button id="butt5" >查询文本</button>
+		</label>
+		<input type="text" id = "input_2" style="height:35px">
+	</div>
+
+
+
+	<br/>
+	<div id="duilie" style="text-align:center">
+
+	</div>
+
+
+
+
+
+<script type="text/javascript">
+
+
+(window.onload = function(){
+
+
+//定义一个id选择器
+	function $(id){
+		return document.getElementById(id);
+	}
+
+//增加span函数
+	function addspan(ab){
+		var span = document.createElement('span');
+		span.innerHTML = ab;
+		return span;
+	}
+
+//验证输入数字的合法性(0和非0开头的数字才可以)
+	function validate(s){
+		var a = /\S/;
+		if(!a.exec(s))
+			{alert("输入数字不合法!");
+			return 0;
+		}
+		else return 1;
+
+	}
+
+//分隔字符串
+	function sp_str(str)
+	{
+		var re = /\s*[\n|,|.|\t|，|。|、|\s]\s*/;
+		var strs=str.split(re);
+		return strs; 
+	}
+
+//按钮一绑定事件
+	$("butt1").onclick = function()
+	{
+		var temp_str = $("input_1").value;
+		var temp_arr = sp_str(temp_str);
+		var len = temp_arr.length;
+		for(var i=0; i<len; i++)
+		{
+			var temp = temp_arr[i];
+			if(temp != "")
+			{
+				if(validate(temp))
+				{
+				   var rank = $("duilie").children.length;
+				   if(rank == 0)
+				   {
+					span = addspan(temp);
+					//span.setAttribute("id","span_"+rank);
+					$("duilie").appendChild(span);
+				   }
+				   else
+				   {
+					//先找到第一个子元素
+					var firstspan = $("duilie").firstChild;
+					span = addspan(temp);
+					//span.setAttribute("id","span_"+rank);
+					$("duilie").insertBefore(span,firstspan);
+					}
+
+				}
+			}
+		}
+	}
+
+//绑定回车事件
+/*	$("input_1").onkeyup = function(event)
+	{
+		if((event.keyCode == 13)||(event.keyCode == 108))
+		{
+			var temp_str = $("input_1").value;
+			var temp_arr = sp_str(temp_str);
+			var len = temp_arr.length;
+			for(var i=0; i<len; i++)
+			{
+				var temp = temp_arr[i];
+				if (temp != "")
+				{
+					if(validate(temp))
+					{
+					   var rank = $("duilie").children.length;
+					   if(rank == 0)
+					   {
+						span = addspan(temp);
+						//span.setAttribute("id","span_"+rank);
+						$("duilie").appendChild(span);
+					   }
+					   else
+					   {
+						//先找到第一个子元素
+						var firstspan = $("duilie").firstChild;
+						span = addspan(temp);
+						//span.setAttribute("id","span_"+rank);
+						$("duilie").insertBefore(span,firstspan);
+						}
+
+					}
+				}
+			}
+		}
+	}*/
+//按钮二绑定事件
+	$("butt2").onclick = function()
+	{
+		var temp_str = $("input_1").value;
+		var temp_arr = sp_str(temp_str);
+		var len = temp_arr.length;
+		for(var i=0; i<len; i++)
+		{
+			var temp = temp_arr[i];
+			if(temp != "")
+			{
+				if(validate(temp))
+				{
+				 var rank = $("duilie").children.length;
+				 span = addspan(temp);
+				 //span.setAttribute("id","span_"+rank);
+				 $("duilie").appendChild(span);
+				}
+			}
+		}
+	}
+//按钮三绑定事件
+	$("butt3").onclick = function(){
+		var firstspan = $("duilie").children.item(0);
+		var a = firstspan.innerHTML;
+		alert(a);
+		$("duilie").removeChild(firstspan);
+	}
+//按钮四绑定时间
+	$("butt4").onclick = function(){
+		var lastspan = $("duilie").lastChild;
+		var a = lastspan.innerHTML;
+		alert(a);
+		$("duilie").removeChild(lastspan);
+	}
+//单击数字使其消失
+	$("duilie").onclick = function(event){
+        var e = event.srcElement.tagName;
+        //console.log(e)
+		if(e == "SPAN")
+		{$("duilie").removeChild(event.srcElement);}
+
+	}
+
+
+//处理匹配，匹配返回1，否则0
+	function str_match(re,str)
+	{
+		if(str.search(re) != -1)
+		{
+			var Result = str.search(re);
+			return 1;
+		}
+		else
+			return 0;
+	}
+//处理匹配
+	function mathandle()
+	{
+		var len = $("duilie").children.length;
+		var re = $("input_2").value;
+		for(var i=0;i<len;i++)
+		{
+			var str = $("duilie").children.item(i).innerHTML;
+			var flag = str_match(re,str);
+			if(flag)
+			{
+				$("duilie").children.item(i).style.background = "grey";
+
+			}
+			else
+				$("duilie").children.item(i).style.background = "black";
+
+		}
+	}
+//
+//绑定点击事件
+	$("butt5").onclick = function()
+	{
+		mathandle();
+	}
+
+	//绑定回车
+	$("input_2").onkeyup = function(event)
+	{
+		if((event.keyCode == 13)||(event.keyCode == 108))
+		{
+			mathandle();
+		}
+	}
+
+
+})();
+
+</script>
+
+</body>
+
+</html>
