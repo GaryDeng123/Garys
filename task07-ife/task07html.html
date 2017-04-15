@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>task07html+css</title>
+	<link rel="stylesheet" type="text/css" href="task07css.css">
+	<meta charset="utf-8">
+	<script type="text/javascript">
+window.onload = function()
+{
+	function $(id)
+	{
+		return document.getElementById(id);
+	}
+//diyige
+	$("nav14").onmouseover = function()
+	{
+		$("nav14").style.opacity = 0.5;
+		$("nav12").style.opacity = 0;
+	}
+	$("nav14").onmouseout = function()
+	{
+		$("nav14").style.opacity = 0;
+		$("nav12").style.opacity = 0;
+	}
+	$("nav12").onmouseover = function()
+	{
+		$("nav12").style.opacity = 0.5;
+		$("nav14").style.opacity = 0;
+	}
+	$("nav12").onmouseout = function()
+	{
+		$("nav14").style.opacity = 0;
+		$("nav12").style.opacity = 0;
+	}
+//dierge
+	$("nav21").onmouseover = function()
+	{
+		$("nav21").style.opacity = 0.5;
+		$("nav23").style.opacity = 0;
+	}
+	$("nav21").onmouseout = function()
+	{
+		$("nav21").style.opacity = 0;
+		$("nav23").style.opacity = 0;
+	}
+	$("nav23").onmouseover = function()
+	{
+		$("nav23").style.opacity = 0.5;
+		$("nav21").style.opacity = 0;
+	}
+	$("nav23").onmouseout = function()
+	{
+		$("nav23").style.opacity = 0;
+		$("nav21").style.opacity = 0;
+	}
+//disange
+	$("nav32").onmouseover = function()
+	{
+		$("nav32").style.opacity = 0.5;
+		$("nav34").style.opacity = 0;
+	}
+	$("nav32").onmouseout = function()
+	{
+		$("nav32").style.opacity = 0;
+		$("nav34").style.opacity = 0;
+	}
+	$("nav34").onmouseover = function()
+	{
+		$("nav34").style.opacity = 0.5;
+		$("nav32").style.opacity = 0;
+	}
+	$("nav34").onmouseout = function()
+	{
+		$("nav32").style.opacity = 0;
+		$("nav34").style.opacity = 0;
+	}
+//disige
+	$("nav41").onmouseover = function()
+	{
+		$("nav41").style.opacity = 0.5;
+		$("nav43").style.opacity = 0;
+	}
+	$("nav41").onmouseout = function()
+	{
+		$("nav41").style.opacity = 0;
+		$("nav43").style.opacity = 0;
+	}
+	$("nav43").onmouseover = function()
+	{
+		$("nav43").style.opacity = 0.5;
+		$("nav41").style.opacity = 0;
+	}
+	$("nav43").onmouseout = function()
+	{
+		$("nav43").style.opacity = 0;
+		$("nav41").style.opacity = 0;
+	}
+//diyige
+	$("nav14").onclick = function()
+	{
+		show4();
+	}
+	$("nav12").onclick = function()
+	{
+		show2();
+	}
+//dierge
+	$("nav21").onclick = function()
+	{
+		show1();
+	}
+	$("nav23").onclick = function()
+	{
+		show3();
+	}
+//disange
+	$("nav32").onclick = function()
+	{
+		show2();
+	}
+	$("nav34").onclick = function()
+	{
+		show4();
+	}
+//disige
+	$("nav41").onclick = function()
+	{
+		show1();
+	}
+	$("nav43").onclick = function()
+	{
+		show3();
+	}
+
+	function show1()
+	{
+		$("dot1").style.color = "#e74f4d";
+		$("dot2").style.color = "#ddd";
+		$("dot3").style.color = "#ddd";
+		$("dot4").style.color = "#ddd";
+		$("group1").style.webkitTransform = "scale(1,1)";
+		$("group2").style.webkitTransform = "scale(0,0)";		
+		$("group3").style.webkitTransform = "scale(0,0)";	
+		$("group4").style.webkitTransform = "scale(0,0)";	
+	}
+	function show2()
+	{
+		$("dot2").style.color = "#e74f4d";
+		$("dot1").style.color = "#ddd";
+		$("dot3").style.color = "#ddd";
+		$("dot4").style.color = "#ddd";
+		$("group2").style.webkitTransform = "scale(1,1)";
+		$("group1").style.webkitTransform = "scale(0,0)";		
+		$("group3").style.webkitTransform = "scale(0,0)";	
+		$("group4").style.webkitTransform = "scale(0,0)";			
+	}
+	function show3()
+	{
+		$("dot3").style.color = "#e74f4d";
+		$("dot2").style.color = "#ddd";
+		$("dot1").style.color = "#ddd";
+		$("dot4").style.color = "#ddd";
+		$("group3").style.webkitTransform = "scale(1,1)";
+		$("group2").style.webkitTransform = "scale(0,0)";		
+		$("group1").style.webkitTransform = "scale(0,0)";	
+		$("group4").style.webkitTransform = "scale(0,0)";	
+	}
+	function show4()
+	{
+		$("dot4").style.color = "#e74f4d";
+		$("dot2").style.color = "#ddd";
+		$("dot3").style.color = "#ddd";
+		$("dot1").style.color = "#ddd";
+		$("group4").style.webkitTransform = "scale(1,1)";
+		$("group2").style.webkitTransform = "scale(0,0)";		
+		$("group3").style.webkitTransform = "scale(0,0)";	
+		$("group1").style.webkitTransform = "scale(0,0)";	
+	}
+
+
+
+
+	$("dot1").onclick = function()
+	{
+		show1();
+	}
+	$("dot2").onclick = function()
+	{
+		show2();
+	}
+	$("dot3").onclick = function()
+	{
+		show3();
+	}
+	$("dot4").onclick = function()
+	{
+		show4();
+	}
+}
+	</script>
+</head>
+<body>
+	<header>
+		<div id = "header_left">
+			<img src="task07-background03-01.png">
+			<p>新世界</p>
+		</div>
+		<div id = "header_right">
+			<ul>
+				<li><a href="#">首页</a></li>
+				<li><a href="#">最新活动</a></li>
+				<li><a href="#">项目介绍</a></li>
+				<li><a href="#">爱心社区</a></li>
+				<li><a href="#">关于我们</a></li>
+				<li><img src = "task07-header01.png"><a href="#">登录</a></li>
+			</ul>
+		</div>
+	</header>
+
+	<div id="first_part">
+		<div id="first_part_wrapper">
+			<h1>Time of New Life</h1>
+			<p>新时代，年轻的人们让我们一起</p>
+			<p>体验新生活，享受新生活</p>
+			<div id="first_part_butt"><a href="#">开始体验</a></div>
+		</div>
+	</div>
+
+	<div id="part_2">
+		<div id = "part_2_wrapper">
+			<dl>
+				<div class="tuwenwrap">
+					<dt><img src="task07-background02-01.png"></dt>
+					<dd id="firchild">打造全新世界观，让你更爱你的生活</dd>
+				</div>
+				<div class="tuwenwrap">
+					<dt><img src="task07-background02-02.png"></dt>
+					<dd>丰富多彩的公益活动，发挥新世界的主人公意识</dd>
+				</div>
+				<div class="tuwenwrap">
+					<dt><img src="task07-background02-03.png"></dt>
+					<dd>时尚的新理念，超前体验位置的生活</dd>
+				</div>
+				<div class="tuwenwrap">
+					<dt><img src="task07-background02-04.png"></dt>
+					<dd>完善的培养机制，培养你全心的世界观</dd>
+				</div>
+			</dl>
+		</div>
+	</div>
+
+	<div id="part_3">
+		<article>
+			<img src="task07-background03-01.png">
+			<h1>关于新世界，你还有什么不知道</h1>
+		</article>
+	</div>
+
+	<div id="part_4">
+		<div id="part_4_wrapper1">
+			<h1>查找新世界城市活动信息</h1>
+			<p>每个城市有不同活动信息，请自主查询您所要了解的城市</p>
+			<div id="part_4_wrapper2">
+				<select id="guojia">
+					<option value="1">中国</option>
+					<option value="2">美国</option>
+					<option value="3">其他</option>
+				</select>
+				<select id="shengfen">
+					<option value="1">北京市</option>
+					<option value="2">天津市</option>
+					<option value="3">武汉市</option>
+					<option value="3">重庆市</option>
+				</select>
+				<select id="chengshi">
+					<option value="1">杭州市</option>
+					<option value="2">淮北市</option>
+				</select>
+				<button id="butt1">搜索</button>
+			</div>
+		</div>
+	</div>
+
+	<div id="part5">
+		<div id="part5_wrapper">
+			<div id="part5_con1">
+				<img src="task07-background05-01.png">
+				<h1>北京活动</h1>
+				<p>新社区大联盟</p>
+			</div>
+			<div id="part5_con2">
+				<h1>上&nbsp&nbsp&nbsp海&nbsp&nbsp&nbsp活&nbsp&nbsp&nbsp动</h1>
+				<p>夜上海新景观探索</p>
+				<img src="task07-background05-02.png">
+
+			</div>
+			<div id="part5_con3">
+				<img src="task07-background05-03.png">
+				<h1>深圳活动</h1>
+				<p>全新海岸线观点站</p>
+			</div>
+			<div id="part5_con4">
+				<img src="task07-background05-04.png">
+				<h1>香港活动</h1>
+				<p>奢侈消费大派送</p>
+			</div>
+		</div>
+	</div>
+
+	<div id="part6">
+		<div id="part6_left">
+			<div id="part6_left_wrapper">
+				<h1>新世界</h1>
+				<h2>TIME</h2>
+				<h3>@新世界-北京</h3>
+				<h3>2017.04.09</h3>
+			</div>
+		</div>
+		<div id="part6_right">
+			<label class="group" id="group1">
+				<h1>新世界/01</h1>
+				<p>新世界是个新世界新世界是个新世界新世界是个新世界新世界是个新世界新世界是个新世界新世界是个新世界新世界是个新世界新世界是个新世界新世界是个新世界</p>
+				<div id="nav1">
+					<div class="navleft" id="nav14"><</div>
+					<div class="navright" id="nav12">></div>
+				</div>
+			</label>
+			<label class="group" id="group2">
+				<h1>新世界/02</h1>
+				<p>i was found on the group by the fountrain about a faii</p>
+				<div id="nav2">
+					<div class="navleft" id="nav21"><</div>
+					<div class="navright" id="nav23">></div>
+				</div>
+			</label>
+			<label class="group" id="group3">
+				<h1>新世界/03</h1>
+				<p>nishisheinisheiaz,mnviaslkdjfzmxvnc,zbm,xzvauergh</p>
+				<div id=nav3"">
+					<div class="navleft" id="nav32"><</div>
+					<div class="navright" id="nav34">></div>
+				</div>
+			</label>
+			<label class="group" id="group4">
+				<h1>新世界/04</h1>
+				<p>actuaalyyalskdfja;kasdfasdfasdfasdfasdfljvnzl</p>
+				<div id="nav4">
+					<div class="navleft" id="nav43"><</div>
+					<div class="navright" id="nav41">></div>
+				</div>
+			</label>
+			
+			<div id="dot">
+				<span class="dots" id="dot1">。</span>
+				<span class="dots" id="dot2">。</span>
+				<span class="dots" id="dot3">。</span>
+				<span class="dots" id="dot4">。</span>
+			</div>
+		</div>
+	</div>
+
+	<div id="part7">
+		<div id="part7_left">
+			<div id="part7_left_wrapper">
+				<p>新时代</p>
+				<p>关于爱生活的我们</p>
+				<div>——</div>
+				<button>查看更多</button>
+			</div>
+		</div>
+		<div id="part7_middle">
+			<div id="part7_middle_wrapper">
+				<p>新时代</p>
+				<p>关于爱生活的我们</p>
+				<div>——</div>
+				<button>查看更多</button>
+			</div>
+		</div>
+		<div id="part7_right">
+		</div>
+	</div>
+
+	<div id="part8">
+		<div id="part8_top">
+			<h1>成为我们的志愿者</h1>
+			<h2>——</h2>
+			<p>新世界的大家庭需要每一个爱生活的人的加入，如果你够年轻，有梦想，有激情</p>
+			<p>那就不要犹豫，快来加入我们</p>
+		</div>
+		<div id="part8_left">
+			<h1>新世界志愿者协议</h1>
+			<p>加入新世界志愿者的人员必须遵守中华人民共和国的相关法律法规，并且本着平等自愿的原则</p>
+			<h1>新世界志愿者权利</h1>
+			<p>新世界志愿者享受新世界内部所有资源共享的权利，并且享受所在市新世界活动的偶先参与资格</p>
+			<h1>更多条款</h1>
+			<p></p>
+		</div>
+		<div id="part8_right">
+			<input type="text" name="姓名" placeholder="姓名：">
+			<input type="text" name="年龄" placeholder="年龄："><br />
+			<input type="text" name="联系方式" placeholder="联系方式：">
+			<input type="text" name="联系地址" placeholder="联系地址："><br />
+			<textarea cols="45" rows="8" placeholder="请简单描述您梦想的生活："></textarea><br />
+			<input type="submit" id="submit">
+		</div>
+	</div>
+
+
+	<div id="lastpart">
+		<div id="lastpart_wrapper">
+			<h1>联系我们</h1>
+			<p>为了更好的获取我们最新的产品咨询，您可以留下您的电子邮件快速订阅我们的产品咨询</p>
+			<p>也可以通过以下任何方式关注我们动态</p>
+			<div>
+				<input type="email" name="user_email" id="email" placeholder="someone@email.com">
+				<input type="submit" id="submit2">
+			</div>
+		</div>
+	</div>
+	<footer>
+		<h1>@2016新世界</h1>
+		<h2><a href="#">Back to top</a></h2>
+	</footer>
+</body>
+</html>
