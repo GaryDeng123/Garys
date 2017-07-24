@@ -24,8 +24,8 @@ $(function() {
 
     var _top;
     var top1 = $("#section2").offset().top-50;
-    var top2 = $("#section3").offset().top-50;
-    var top3 = $("#section4").offset().top-50;
+    var top2 = $("#section4").offset().top-50;
+    var top3 = $("#section3").offset().top-50;
     var top4 = $("#section5").offset().top-50;
     // var top5 = $("#section6").offset().top-30;
     // var top6 = $("#section7").offset().top-30;
@@ -54,7 +54,7 @@ $(function() {
     });
     //关于我
     $("#btn-aboutme").bind("click", function () {
-       $(".nav-ul li:nth-child(1)").click();
+       $(".nav li:nth-child(1)").click();
     });
 
     //导航点击
@@ -88,6 +88,18 @@ $(function() {
     	$(".my-xp li+li").css("opacity","1");
     	$("#masterDetail").css("opacity","0");
    		$("#masterDetail").css("top","180px");
+    });
+    $("#undergraduateCircle").bind("mouseover",function(){
+    	$("#undergraduate").css("opacity","0");
+    	$(".my-xp li:nth-child(1)").css("opacity","0");
+    	$("#undergraduateDetail").css("opacity","1");
+    	$("#undergraduateDetail").css("bottom","0px");
+    });
+    $("#undergraduateCircle").bind("mouseout",function(){
+    	$("#undergraduate").css("opacity","1");
+    	$(".my-xp li:nth-child(1)").css("opacity","1");
+    	$("#undergraduateDetail").css("opacity","0");
+   		$("#undergraduateDetail").css("bottom","-20px");
     });
     
 
