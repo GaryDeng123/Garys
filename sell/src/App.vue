@@ -30,18 +30,15 @@
   },
   created() {
     this.$http.get('/api/seller').then(function(res) {
-      res = res.body;
+      res = res.body;// 得到它的json文件
       if (res.errno === ERR_OK) {
         this.seller = res.data;
-        console.log(this.seller);
+        // console.log(this.seller);
       }
     });
   },
   components: {
     'v-header': header
-    // 'goods': goods,
-    // 'ratings': ratings,
-    // 'seller': seller
  }
 };
 </script>

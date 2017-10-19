@@ -30,13 +30,44 @@
       	<img :src="seller.avatar">
       </div>
       <div class="detail" v-show="detailShow">
-      	
+      	<div class="detail-wrapper clearfix">
+      		<div class="detail-main">
+      			<h1 class="name">{{seller.name}}</h1>
+      			<div class="star-wrapper">
+      				<star :size="48" :score="seller.score"></star>
+      			</div>
+      			<div class="info-wrapper">
+      				<div class="info-left"></div>
+      				<div class="info-main">优惠信息</div>
+      				<div class="info-right"></div>
+      			</div>
+      			<div class="info-detail">
+      				<div v-for="value in seller.supports" class="info-single-wrapper">
+      					<span :class="classMap[value.type]+'_2'" class="info-icon"></span>
+      					<span class="info-text">{{value.description}}</span>
+      				</div>
+      			</div>
+      			<div class="info-wrapper">
+      				<div class="info-left"></div>
+      				<div class="info-main">商家公告</div>
+      				<div class="info-right"></div>
+      			</div>
+      			<div class="info-bulletin">
+      				{{seller.bulletin}}
+      			</div>
+      			
+      		</div>
+      	</div>
+      	<div class="detail-close">
+      		<span class="icon-close" @click="closeDetail"></span>
+      	</div>
       </div>
     </div>
 
 </template>
 
-<script type="text/ecmascript-6">
+<script>
+	import star from '../star/star.vue';
 	export default{
 		props: {
 			seller: {
@@ -51,10 +82,16 @@
 		methods: {
 			showDetail() {
 				this.detailShow = true;
+			},
+			closeDetail() {
+				this.detailShow = false;
 			}
 		},
 		created() {
 			this.classMap = ['decrease', 'discount', 'special', 'invoice', 'guarantee'];
+		},
+		components: {
+			'star': star
 		}
 	};
 </script>
@@ -102,13 +139,13 @@
 		background-image:url(brand@3x.png);
 	}
 }
-.name{
+.title>.name{
 	margin-left: 6px;
 	font-size: 16px;
 	line-height: 18px;
 	font-weight: bold;
 }
-.description{
+.content>.description{
 	margin-bottom: 10px;
 	line-height: 12px;
 	font-size: 12px;
@@ -127,45 +164,38 @@
 .decrease{
 	background-image: url(decrease_1@2x.png);
 }
-@media (-webkit-min-device-pixel-ratio: 3){
-	.decrease{
-		background-image:url(decrease_1@3x.png);
-	}
-}
 .discount{
 	background-image: url(discount_1@2x.png);
-}
-@media (-webkit-min-device-pixel-ratio: 3){
-	.discount{
-		background-image:url(discount_1@3x.png);
-	}
 }
 .guarantee{
 	background-image: url(guarantee_1@2x.png);
 }
-@media (-webkit-min-device-pixel-ratio: 3){
-	.guarantee{
-		background-image:url(guarantee_1@3x.png);
-	}
-}
 .invoice{
 	background-image: url(invoice_1@2x.png);
-}
-@media (-webkit-min-device-pixel-ratio: 3){
-	.invoice{
-		background-image:url(invoice_1@3x.png);
-	}
 }
 .special{
 	background-image: url(special_1@2x.png);
 }
+
 @media (-webkit-min-device-pixel-ratio: 3){
+	.decrease{
+		background-image:url(decrease_1@3x.png);
+	}
+	.discount{
+		background-image:url(discount_1@3x.png);
+	}
+	.guarantee{
+		background-image:url(guarantee_1@3x.png);
+	}
+	.invoice{
+		background-image:url(invoice_1@3x.png);
+	}
 	.special{
 		background-image:url(special_1@3x.png);
 	}
 }
 
-.text{
+.supports>.text{
 	vertical-align: top;
 	line-height: 12px;
 	font-size: 10px;
@@ -260,5 +290,124 @@
 	height: 100%;
 	overflow: auto;
 	background-color: rgba(7,17,27,0.8);
+}
+.detail-wrapper{
+	min-height: 100%;
+	width: 100%
+}
+.detail-main{
+	margin-top: 64px;
+	padding-bottom: 64px; /* 一定是padding不是margin */
+}
+.detail-close{
+	position: relative;
+	width: 32px;
+	height: 32px;
+	margin: -64px auto 0 auto;
+	clear: both;
+	font-size: 32px;
+}
+.detail-main>.name{
+	margin: 68px auto 16px auto;
+	text-align: center;
+	font-size: 16px;
+	font-weight: 700;
+	color: #FFF;
+	line-height: 16px;
+}
+.star-wrapper{
+	margin-top: 16px;
+	margin-bottom: 28px;
+	text-align: center;
+}
+.info-wrapper{
+	margin: 0 36px;
+	display: flex;
+	align-items: center;
+}
+.info-main{
+	margin: 0 12px;
+	font-size: 14px;
+	font-weight: 700;
+	color: #FFF;
+	line-height: 14px;
+}
+.info-left,.info-right{
+	flex: 1;
+	height: 1px;
+	vertical-align: top;
+	background-color: rgba(255,255,255,0.2);
+}
+.info-detail{
+	margin-top: 24px;
+	margin-left: 36px;
+	text-align: left;
+}
+.info-single-wrapper{
+	display: flex;
+	align-items: center;
+	margin-left: 12px;
+	margin-bottom: 12px;
+}
+.info-single-wrapper:last-child{
+	margin-bottom: 28px;
+}
+.info-icon{
+	height: 24px;
+	width: 24px;
+	background-size: 24px 24px;
+	background-repeat: no-repeat;
+	display: inline-block;
+	/*vertical-align: top;*/
+}
+.decrease_2{
+	background-image: url(decrease_2@2x.png);
+}
+.discount_2{
+	background-image: url(discount_2@2x.png);
+}
+.guarantee_2{
+	background-image: url(guarantee_2@2x.png);
+}
+.invoice_2{
+	background-image: url(invoice_2@2x.png);
+}
+.special_2{
+	background-image: url(special_2@2x.png);
+}
+
+@media (-webkit-min-device-pixel-ratio: 3){
+	.decrease_2{
+		background-image:url(decrease_2@3x.png);
+	}
+	.discount_2{
+		background-image:url(discount_2@3x.png);
+	}
+	.guarantee_2{
+		background-image:url(guarantee_2@3x.png);
+	}
+	.invoice_2{
+		background-image:url(invoice_2@3x.png);
+	}
+	.special_2{
+		background-image:url(special_2@3x.png);
+	}
+}
+.info-text{
+	margin-left: 6px;
+	font-size: 12px;
+	color: #FFF;
+	font-weight: 200;
+	line-height: 12px;
+	vertical-align: top;
+}
+.info-bulletin{
+	margin-top: 24px;
+	margin-left: 48px;
+	margin-right: 48px;
+	font-size: 12px;
+	font-weight: 200;
+	color: #FFF;
+	line-height: 24px;
 }
 </style>
