@@ -2,7 +2,8 @@
 	<div class="goods">
 		<div class="menu-wrapper">
 			<ul>
-				<li v-for="value in goods" class="left-single">
+				<li v-for="(value,index) in goods" class="left-single" @click="goAnchor('#' + value.name)" 
+				:class="{'current':currentIndex === index}">
 					<span class="text">
 						<span v-show="value.type>0" class="icon" :class="classMap[value.type]"></span>
 						{{value.name}}
@@ -10,9 +11,9 @@
 				</li>
 			</ul>
 		</div>
-		<div class="foods-wrapper">
+		<div class="foods-wrapper" @scroll="getNowHeight()">
 			<ul>
-				<li v-for="value in goods" class="right-single">
+				<li v-for="value in goods" class="right-single right-single-hook" :id="value.name">
 					<h1>{{value.name}}</h1>
 					<ul class="foods-wrapper">
 						<li v-for="foods in value.foods" class="foods-single">
@@ -46,16 +47,102 @@
 		},
 		data() {
 			return {
-				goods: []
+				goods: [],
+				eachTop: [],
+				height: 0
 			};
 		},
+		computed: {
+			currentIndex() {
+				for (let i = 0; i < this.eachTop.length; i++) {
+        let height1 = this.eachTop[i];
+        let height2 = this.eachTop[i + 1];
+        console.log('height=' + this.height);
+        console.log('height1=' + height1);
+        console.log('height2=' + height2);
+        if (!height2 || (this.height > height1 && this.height < height2)) {
+          console.log('%%%%%%%%%%%%%%%%' + i);
+          return i;
+        }
+       }
+			}
+		},
+		methods: {
+			goAnchor(selector) {
+        var anchor = this.$el.querySelector(selector);
+        var newTop = anchor.offsetTop;
+        console.log('anchor.offsetTop=' + newTop);
+        var wrapper = this.$el.querySelector('.goods>.foods-wrapper');
+        var oldTop = wrapper.scrollTop;
+        console.log('wrapper.scrollTop=' + oldTop);
+        var distance = newTop - oldTop;
+        var step = distance / 50;
+        if (newTop > oldTop) {
+					Down();
+        } else {
+					Up();
+        }
+				function Down() {
+				if (oldTop < newTop) {
+				wrapper.scrollTop = oldTop;
+				oldTop = oldTop + step;
+				setTimeout(Down, 10);
+				} else {
+				wrapper.scrollTop = newTop;
+				}
+				}
+				function Up() {
+				if (oldTop > newTop) {
+				wrapper.scrollTop = oldTop;
+				oldTop = oldTop + step;
+				setTimeout(Up, 10);
+				} else {
+				wrapper.scrollTop = newTop;
+				}
+			}
+				oldTop = newTop;
+				console.log('anchor.offsetTop=' + newTop);
+				console.log('wrapper.scrollTop=' + oldTop);
+    },
+    getEachHeight() {
+      let foodList = this.$el.getElementsByClassName('right-single-hook');
+      for (let i = 0; i < foodList.length; i++) {
+        this.eachTop.push(foodList[i].offsetTop);
+      }
+     },
+     getNowHeight() {
+       var wrapper = this.$el.querySelector('.goods>.foods-wrapper');
+       var height = wrapper.scrollTop;
+       this.height = height;
+       // console.log(height);
+       // for (let i = 0; i < this.eachTop.length; i++) {
+       //  let height1 = this.eachTop[i];
+       //  let height2 = this.eachTop[i + 1];
+       //  console.log('height=' + height);
+       //  console.log('height1=' + height1);
+       //  console.log('height2=' + height2);
+       //  if (!height2 || (height > height1 && height < height2)) {
+       //    console.log('%%%%%%%%%%%%%%%%' + i);
+       //    return i;
+       //  }
+       // }
+     }
+  },
+		// computed: {
+		// 	rightId() {
+		// 		let result = '';
+		// 		let name = this.goods.name;
+		// 	}
+		// },
 		created() {
 			this.classMap = ['decrease', 'discount', 'special', 'invoice', 'guarantee'];
 			this.$http.get('/api/goods').then(function(res) {
 				res = res.body;
 				if (res.errno === ERR_OK) {
 					this.goods = res.data;
-					// console.log(this.goods);
+					this.$nextTick(() => {
+						this.getEachHeight();
+					});
 				}
 			});
 		}
@@ -76,6 +163,10 @@
 		width: 80px;
 		background-color: #f3f5f7;
 		overflow: auto;
+	}
+	.current{
+		font-weight: 700;
+		background-color: #FFF;
 	}
 	.foods-wrapper{
 		flex: 1;
@@ -142,6 +233,9 @@
 	line-height: 14px;
 	/*color: rgb(147,153,159);*/
 }
+/*.goods>.foods-wrapper{
+		transition: top linear 0.1s;
+}*/
 .right-single>h1{
 	font-size: 12px;
 	color: rgb(147,153,159);
